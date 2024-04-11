@@ -1,0 +1,32 @@
+<form>
+  <div class="col-md-3">
+    <label for="nomePais" class="form-label">Pais</label>
+    <input type="text" class="form-control" id="nomePais">
+  </div>
+  <button type="Pesquisar" class="btn btn-primary">Submit</button>
+</form>
+
+<div>
+  <table class="table table-danger">
+    <thead>
+      <tr>
+        <th >Nome</th>
+        <th >Pais</th>
+        <th >Pesquisador</th>
+        <th >Estagio</th>
+        <th >Iniciou em:</th>
+       <!-- <th >Média</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vacina of vacinas">
+        <td>{{ vacina.nome }}</td>
+        <td>{{ vacina.paisOrigem.nomePais }}</td>
+        <td>{{ vacina.pesquisador.nome }}</td>
+        <td>{{ vacina.estagio }}</td>
+        <td>{{ vacina.dataInicioPesquisa| date: 'dd/MM/yyyy'}}</td>
+        <!-- <td> {{ vacina.mediaVacina }} </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
