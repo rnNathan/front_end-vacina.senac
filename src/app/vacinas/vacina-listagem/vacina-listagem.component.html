@@ -1,32 +1,82 @@
-<form>
-  <div class="col-md-3">
-    <label for="nomePais" class="form-label">Pais</label>
-    <input type="text" class="form-control" id="nomePais">
-  </div>
-  <button type="Pesquisar" class="btn btn-primary">Submit</button>
-</form>
+<div class="container">
 
-<div>
-  <table class="table table-danger">
-    <thead>
-      <tr>
-        <th >Nome</th>
-        <th >Pais</th>
-        <th >Pesquisador</th>
-        <th >Estagio</th>
-        <th >Iniciou em:</th>
-       <!-- <th >Média</th> -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let vacina of vacinas">
-        <td>{{ vacina.nome }}</td>
-        <td>{{ vacina.paisOrigem.nomePais }}</td>
-        <td>{{ vacina.pesquisador.nome }}</td>
-        <td>{{ vacina.estagio }}</td>
-        <td>{{ vacina.dataInicioPesquisa| date: 'dd/MM/yyyy'}}</td>
-        <!-- <td> {{ vacina.mediaVacina }} </td> -->
-      </tr>
-    </tbody>
-  </table>
+  <div class="card">
+    <div class="card-header bg-info">
+      <h5>Filtros</h5>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-3">
+            <label for="nome">Nome Vacina:</label>
+            <input type="text" id="nome" class="form-control" name="nomeVacina"  [(ngModel)] = "seletor.nomeVacina">
+          </div>
+          <div class="col-md-3">
+            <label for="nome">Nome País:</label>
+            <input type="text" id="nome" class="form-control" name="nomePais"  [(ngModel)] = "seletor.nomePais">
+          </div>
+          <div class="col-md-3">
+            <label for="nome">Nome Pesquisador:</label>
+            <input type="text" id="nome" class="form-control" name="nomePesquisador" [(ngModel)] = "seletor.nomePesquisador">
+          </div>
+          <div class="col-md-3">
+          <label for="nome">&nbsp;</label>
+          <button type="button" class="form-control btn btn-warning" 
+          (click)= "limpar">
+            <i class="bi bi- trash"></i> Limpar
+          </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <label for="nome">Nome Vacina:</label>
+            <input type="text" id="nome" class="form-control" name="nomeVacina" [(ngModel)] = "seletor.nomeVacina" >
+          </div>
+          <div class="col-md-3">
+            <label for="nome">Nome País:</label>
+            <input type="text" id="nome" class="form-control" name="nomePais" [(ngModel)] = "seletor.nomePais">
+          </div>
+          <div class="col-md-3">
+            <label for="nome">Nome Pesquisador:</label>
+            <input type="text" id="nome" class="form-control" name="nomePesquisador"  [(ngModel)] = "seletor.nomePesquisador">
+          </div>
+          <div class="col-md-3">
+            <label for="nome">&nbsp;</label>
+            <button type="button" class="form-control btn btn-warning"
+                (click) = "pesquisar">
+              <i class="bi bi- trash"></i> Pesquisar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div>
+    <table class="table table-striped border">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Pais</th>
+          <th>Pesquisador</th>
+          <th>Estagio</th>
+          <th>Iniciou em:</th>
+          <!-- <th >Média</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr *ngFor= "let vacina of vacinas">
+          <td>{{ vacina.nome }}</td>
+          <td>{{ vacina.paisOrigem.nomePais }}</td>
+          <td>{{ vacina.pesquisador.nome }}</td>
+          <td>{{ vacina.estagio }}</td>
+          <td>{{ vacina.dataInicioPesquisa| date: 'dd/MM/yyyy'}}</td>
+          <!-- <td> {{ vacina.mediaVacina }} </td> -->
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
 </div>

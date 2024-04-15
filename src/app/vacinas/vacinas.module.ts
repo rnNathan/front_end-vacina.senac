@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { VacinasRoutingModule } from './vacinas-routing.module';
 import { VacinaListagemComponent } from './vacina-listagem/vacina-listagem.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -11,7 +13,8 @@ import { VacinaListagemComponent } from './vacina-listagem/vacina-listagem.compo
   ],
   imports: [
     CommonModule,
-    VacinasRoutingModule
+    VacinasRoutingModule,
+    FormsModule
   ]
 })
 export class VacinasModule { }

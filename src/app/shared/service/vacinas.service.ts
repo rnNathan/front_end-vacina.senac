@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vacina } from '../model/vacina';
+import { VacinaSeletor } from '../model/seletor/vacina.seleto';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class VacinasService {
 
 private readonly API = 'http://localhost:8080/vacina-o_senac.2024/rest/vacina';
@@ -14,7 +16,7 @@ private readonly API = 'http://localhost:8080/vacina-o_senac.2024/rest/vacina';
   constructor(private httpClient: HttpClient) { }
 
   listarTodas(): Observable <Array<Vacina>> {
-    return this.httpClient.get<Array<Vacina>>(this.API + '/listarTodos');
+    return this.httpClient.get<Array<Vacina>>(this.API + "/listarTodos");
 
   }
 
@@ -22,4 +24,10 @@ private readonly API = 'http://localhost:8080/vacina-o_senac.2024/rest/vacina';
     return this.httpClient.get<Vacina>(this.API + '/' + id);
 
   }
+
+  public sonsultarComSeletor(seletor: VacinaSeletor): Observable <Array<Vacina>> {
+    return this.httpClient.post<Array<Vacina>>(this.API + "/filtro", seletor)
+  }
+
+
 }
