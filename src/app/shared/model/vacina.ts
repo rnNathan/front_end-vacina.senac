@@ -2,7 +2,7 @@ import { Pais } from './pais';
 import { Pessoa } from './pessoa';
 
 
-export interface Vacina {
+export interface Vacinas {
 
   id: number,
   nome: string,

@@ -1,7 +1,6 @@
 <div class="container">
-
   <div class="card">
-    <div class="card-header bg-info">
+    <div class="card-header bg-primary">
       <h5>Filtros</h5>
     </div>
     <div class="card-body">
@@ -9,49 +8,62 @@
         <div class="row">
           <div class="col-md-3">
             <label for="nome">Nome Vacina:</label>
-            <input type="text" id="nome" class="form-control" name="nomeVacina"  [(ngModel)] = "seletor.nomeVacina">
+            <input
+              type="text"
+              id="nome"
+              class="form-control"
+              name="nomeVacina"
+              [(ngModel)]="seletor.nomeVacina"
+            />
           </div>
           <div class="col-md-3">
             <label for="nome">Nome País:</label>
-            <input type="text" id="nome" class="form-control" name="nomePais"  [(ngModel)] = "seletor.nomePais">
+            <!--<input type="text" id="nome" class="form-control" name="nomePais" [(ngModel)]="seletor.nomePais"> -->
+            <select
+              class="form-control"
+              name="nomePais"
+              [(ngModel)]="seletor.nomePais"
+            >
+              @for (pais of paises; track pais.idPais) {
+              <option value="{{ pais.nomePais }}">
+                {{ pais.nomePais }} ({{ pais.sigla }})</option>
+              }
+            </select>
           </div>
           <div class="col-md-3">
             <label for="nome">Nome Pesquisador:</label>
-            <input type="text" id="nome" class="form-control" name="nomePesquisador" [(ngModel)] = "seletor.nomePesquisador">
+            <!-- <input type="text" id="nome" class="form-control" name="nomePesquisador"  [(ngModel)]="seletor.nomePesquisador">-->
+            <select
+              class="form-control"
+              name="nomePesquisador"
+              [(ngModel)]="seletor.nomePesquisador"
+            >
+              @for (pessoa of pesquisadores; track pessoa.id) {
+              <option value="{{ pessoa.nome }}">{{ pessoa.nome }}</option>
+              }
+            </select>
           </div>
-          <div class="col-md-3">
-          <label for="nome">&nbsp;</label>
-          <button type="button" class="form-control btn btn-warning" 
-          (click)= "limpar">
-            <i class="bi bi- trash"></i> Limpar
-          </button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <label for="nome">Nome Vacina:</label>
-            <input type="text" id="nome" class="form-control" name="nomeVacina" [(ngModel)] = "seletor.nomeVacina" >
-          </div>
-          <div class="col-md-3">
-            <label for="nome">Nome País:</label>
-            <input type="text" id="nome" class="form-control" name="nomePais" [(ngModel)] = "seletor.nomePais">
-          </div>
-          <div class="col-md-3">
-            <label for="nome">Nome Pesquisador:</label>
-            <input type="text" id="nome" class="form-control" name="nomePesquisador"  [(ngModel)] = "seletor.nomePesquisador">
-          </div>
-          <div class="col-md-3">
-            <label for="nome">&nbsp;</label>
-            <button type="button" class="form-control btn btn-warning"
-                (click) = "pesquisar">
-              <i class="bi bi- trash"></i> Pesquisar
-            </button>
+          <div class="row" >
+            <div class="col-md-16 form-group">
+              <label for="btnPesquisar" class="form-label">&nbsp;</label>
+              <button
+                type="submit"
+                class="btn btn-success"
+                name="btnPesquisar"
+                (click)="pesquisar()"
+              >
+                Pesquisar
+              </button>
+              <label for="btnLimpar" class="form-label">&nbsp;</label>
+              <button type="submit" class="btn btn-warning" (click)="limpar()">
+                Limpar
+              </button>
+            </div>
           </div>
         </div>
       </form>
     </div>
   </div>
-
 
   <div>
     <table class="table table-striped border">
@@ -66,16 +78,20 @@
         </tr>
       </thead>
       <tbody>
-        
-        <tr *ngFor= "let vacina of vacinas">
+        <tr *ngFor="let vacina of vacinas">
           <td>{{ vacina.nome }}</td>
           <td>{{ vacina.paisOrigem.nomePais }}</td>
           <td>{{ vacina.pesquisador.nome }}</td>
           <td>{{ vacina.estagio }}</td>
-          <td>{{ vacina.dataInicioPesquisa| date: 'dd/MM/yyyy'}}</td>
+          <td>{{ vacina.dataInicioPesquisa | date : "dd/MM/yyyy" }}</td>
           <!-- <td> {{ vacina.mediaVacina }} </td> -->
+          <td>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" (click)="excluir(vacina.id)">Editar</button>
+              <button class="btn btn-danger">Excluir</button>
+            </div>
+          </td>
         </tr>
-        
       </tbody>
     </table>
   </div>
