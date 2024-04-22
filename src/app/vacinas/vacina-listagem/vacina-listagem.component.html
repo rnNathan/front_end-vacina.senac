@@ -43,6 +43,16 @@
               }
             </select>
           </div>
+          <div class="col-md-2" >
+            <label for="date">Inicio da vacina. Em:</label>
+            <input type="date" id="inicio" class="form-control" name="dataPesquisa"  [(ngModel)]="seletor.dataInicioPesquisa">
+
+          </div>
+          <div class="col-md-2">
+            <label for="date">Até: </label>
+            <input type="date" id="nome" class="form-control" name="dataPesquisa"  [(ngModel)]="seletor.dataFinalPesquisa">
+
+          </div>
           <div class="row" >
             <div class="col-md-16 form-group">
               <label for="btnPesquisar" class="form-label">&nbsp;</label>
