@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Vacinas } from '../../shared/model/vacina';
 import { VacinasService } from '../../shared/service/vacinas.service';
 import { VacinaSeletor } from '../../shared/model/seletor/vacina.seleto';
@@ -9,6 +9,7 @@ import { PesquisadorService } from '../../shared/service/pesquisador.service';
 
 @Component({
   selector: 'app-vacina-listagem',
+  //standalone: true,
   templateUrl: './vacina-listagem.component.html',
   styleUrl: './vacina-listagem.component.css',
 })

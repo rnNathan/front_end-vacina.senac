@@ -1,0 +1,55 @@
+<div class="container">
+    <form>
+        <div class="card">
+            <div class="card-header">
+                <h5>Nova Vacina</h5>
+            </div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="nomeVacina">Nome da Vacina:</label>
+                        <input class="form-control" name="nome" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="nomePesquisador">Nome do pesquisador:</label>
+                        <select class="form-control" name="nomePesquisador" required>
+                            @for (pessoa of pesquisadores; track pessoa.id) {
+                            <option value="{{ pessoa.id }}" >{{ pessoa.nome }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="nomeVacina" >Nome do País: </label>
+                        <select class="form-control" name="nomePais" required>
+                            @for (pais of pais; track pais.idPais) {
+                            <option value="{{ pais.idPais }}">
+                                {{ pais.nomePais }} ({{ pais.sigla }})</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label for="nomeVacina">Data inicio pesquisa:</label>
+                        <input type="date" class="form-control" name="nome" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="nomeVacina">Estagio:</label>
+                        <input type="number" class="form-control" name="nome" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-1 ">
+                        <label>&nbsp;</label>
+                        <button type="button" class="btn btn-outline-success" (click)="salvar()">Salvar</button>
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label>&nbsp;</label>
+                        <button type="button" class="btn btn-outline-warning" (click)="voltar()">Voltar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

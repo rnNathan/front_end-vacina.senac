@@ -6,7 +6,7 @@
     <div class="card-body">
       <form>
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label for="nome">Nome Vacina:</label>
             <input
               type="text"
@@ -16,7 +16,7 @@
               [(ngModel)]="seletor.nomeVacina"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label for="nome">Nome País:</label>
             <!--<input type="text" id="nome" class="form-control" name="nomePais" [(ngModel)]="seletor.nomePais"> -->
             <select
@@ -30,7 +30,7 @@
               }
             </select>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label for="nome">Nome Pesquisador:</label>
             <!-- <input type="text" id="nome" class="form-control" name="nomePesquisador"  [(ngModel)]="seletor.nomePesquisador">-->
             <select
@@ -97,8 +97,8 @@
           <!-- <td> {{ vacina.mediaVacina }} </td> -->
           <td>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="btn btn-primary" (click)="excluir(vacina.id)">Editar</button>
-              <button class="btn btn-danger">Excluir</button>
+              <button class="btn btn-primary" >Editar</button>
+              <button class="btn btn-danger " (click)="excluir(vacina.id)">Excluir</button>
             </div>
           </td>
         </tr>

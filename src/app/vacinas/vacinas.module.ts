@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 
 
 
+
+
 @NgModule({
   declarations: [
       VacinaListagemComponent
@@ -14,7 +16,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     VacinasRoutingModule,
-    FormsModule
+    FormsModule,
+
+  
   ]
 })
 export class VacinasModule { }
