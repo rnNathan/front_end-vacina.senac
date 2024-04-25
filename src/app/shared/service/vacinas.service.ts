@@ -28,12 +28,12 @@ export class VacinasService {
     return this.httpClient.post<Array<Vacinas>>(this.API + "/filtro", seletor)
   }
 
-  public excluir(id: number):Observable<boolean> {
-    return this.httpClient.delete<boolean>(this.API + "/" + id);
-  }
-
   public salvar(vacina: Vacinas): Observable<any> {
     return this.httpClient.post<Vacinas>(this.API + '/salvar', vacina)
+  }
+
+  public excluir(id: number):Observable<boolean> {
+    return this.httpClient.delete<boolean>(this.API + "/" + id);
   }
 
   public atualizar(vacina: Vacinas):Observable<any> {
