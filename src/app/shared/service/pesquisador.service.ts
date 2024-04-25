@@ -13,7 +13,7 @@ export class PesquisadorService {
 
   constructor(private httpCliente: HttpClient) { }
 
-  public consultarTodosPesquisador():Observable<Array<Pessoa>> {
+  public consultarTodasPessoas():Observable<Array<Pessoa>> {
     return this.httpCliente.get<Array<Pessoa>>(this.API + '/listar')
   };
 
