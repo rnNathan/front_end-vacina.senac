@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { VacinasService } from '../../shared/service/vacinas.service';
 import { Router } from '@angular/router';
 import { Vacinas } from '../../shared/model/vacina';
-import Swal from 'sweetalert2';
 import { Pessoa } from '../../shared/model/pessoa';
 import { Pais } from '../../shared/model/pais';
 import { PesquisadorService } from '../../shared/service/pesquisador.service';
 import { PaisService } from '../../shared/service/pais.service';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -14,8 +15,8 @@ import { PaisService } from '../../shared/service/pais.service';
 
 @Component({
   selector: 'app-vacinas-detalhe',
-//standalone: true,
-  //imports: [VacinaListagemComponent],
+  //standalone: true,
+  //imports: [VacinasModule],
   templateUrl: './vacinas-detalhe.component.html',
   styleUrl: './vacinas-detalhe.component.css'
 })
@@ -29,13 +30,13 @@ export class VacinasDetalheComponent implements OnInit {
     private vacinasService: VacinasService,
     private route: Router,
     private pesquisadorService: PesquisadorService,
-    private paisService: PaisService) 
+    private paisService: PaisService)
      {
 
     }
 
   ngOnInit(): void {
-    this.pesquisadorService.consultarTodosPesquisador().subscribe(
+    this.pesquisadorService.consultarPorPesquisador().subscribe(
       (resposta) => {
         this.pesquisadores = resposta;
       },
@@ -62,9 +63,9 @@ export class VacinasDetalheComponent implements OnInit {
 
  public salvar(): void {
     this.vacinasService.salvar(this.vacina).subscribe(
-      (resposta) => 
+      (resposta) =>
         {
-          
+          this.vacina = resposta;
           Swal.fire('Vacina salva com sucesso!', '', 'success');
           this.voltar();
         },
@@ -73,7 +74,7 @@ export class VacinasDetalheComponent implements OnInit {
         }
 
     );
-    
+
   }
 
 }

@@ -25,7 +25,7 @@
               [(ngModel)]="seletor.nomePais"
             >
               @for (pais of paises; track pais.idPais) {
-              <option value="{{ pais.nomePais }}">
+              <option ngValue="{{ pais.nomePais }}">
                 {{ pais.nomePais }} ({{ pais.sigla }})</option>
               }
             </select>
