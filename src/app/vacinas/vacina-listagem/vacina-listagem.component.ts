@@ -16,11 +16,14 @@ import { Router } from '@angular/router';
   styleUrl: './vacina-listagem.component.css',
 })
 export class VacinaListagemComponent implements OnInit {
+
+  //MEUS OBJETOS
   public vacinas: Array<Vacinas> = new Array();
   public seletor: VacinaSeletor = new VacinaSeletor();
   public paises: Array<Pais> = new Array();
   public pesquisadores: Array<Pessoa> = new Array();
 
+  //DECLARAR NO CONSTRUTOR TODAS AS CLASSES QUE VOCÊ QUER UTILIZAR, PODENDO VISUALIZAR METODOS FEITOS DENTRO DESSAS CLASSES.
   constructor(
     private VacinasService: VacinasService,
     private paisService: PaisService,
@@ -28,9 +31,12 @@ export class VacinaListagemComponent implements OnInit {
     private router: Router
   ) { }
 
+  //ngOnInit É TODOS OS METODOS QUE VAI APARECER ASSIM QUE ABRIR A PÁGINA.
   ngOnInit(): void {
+    //UTILIZANDO O METODO ASSIM QUE MOSTRO A TELA E LISTA TODAS AS VACINAS.
     this.consultarTodasVacinas();
 
+    //METODO PARA CONSULTAR TODOS OS PAISES, UTILIZANDO UM SCROOL PARA ROLAR E PROCURAR DIRETAMENTE DO BACK END OS PAISES CADASTRADOS.
     this.paisService.consultarTodosPaises().subscribe(
       (resultado) => {
         this.paises = resultado;
@@ -50,6 +56,7 @@ export class VacinaListagemComponent implements OnInit {
     );
   }
 
+  //METODO PARA CONSULTAR TODAS AS VACINAS.
   private consultarTodasVacinas() {
     this.VacinasService.listarTodas().subscribe(
       (resultado) => {
@@ -61,6 +68,7 @@ export class VacinaListagemComponent implements OnInit {
     );
   }
 
+  //USADO NO BOTÃO PARA PESQUISAR, ELE UTILIZA A CONSULTA FEITA PELO SELETOR, TENDO TODOS OS FILTROS NO METODO DO BACK-AND.
   public pesquisar() {
     this.VacinasService.consultarComSeletor(this.seletor).subscribe(
       (resultado) => {
@@ -72,10 +80,12 @@ export class VacinaListagemComponent implements OnInit {
     );
   }
 
+  //BOTÃO PARA LIMPAR OS INPUTS
   public limpar() {
     this.seletor = new VacinaSeletor();
   }
 
+  //METODO PARA EXCLUIR, UTILIZA UMA MENSAGEM CASO QUEIRA EXCLUIR OU NÃO (UTILIZANDO BIBLIOTECA SWEETALERT2)
   public excluir(vacinaSelecionada: Vacinas) {
     Swal.fire({
       title: 'Deseja excluir vacina?',
@@ -99,7 +109,7 @@ export class VacinaListagemComponent implements OnInit {
 
     });
   }
-
+  //BOTÃO CRIADO PARA EDITAR E ESTÁ DIFERECIONANDO PARA O CAMINHO QUE INDICA O VACINAS-DETALHES.COMPONENT.TS
   public editar(idVacinaSelecionada: number) {
     this.router.navigate(['/vacinas/detalhes/', idVacinaSelecionada]);
   }

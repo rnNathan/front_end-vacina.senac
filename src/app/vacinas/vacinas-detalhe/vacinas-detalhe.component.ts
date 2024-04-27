@@ -64,7 +64,7 @@ export class VacinasDetalheComponent implements OnInit {
       }
     );
 
-  }
+  } 
 
 
   public salvar(): void {

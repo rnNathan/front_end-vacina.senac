@@ -17,4 +17,14 @@ export class PaisService {
   public consultarTodosPaises():Observable<Array<Pais>> {
     return this.httpClient.get<Array<Pais>>(this.API + "/todos")
   }
+
+  public inserir(pais: Pais):Observable<any>{
+    return this.httpClient.post<Pais>(this.API + '/inserir', pais);
+  }
+
+  public consultarPorId(id: number):Observable<Pais>{
+    return this.httpClient.get<Pais>(this.API + '/' + id);
+  }
+
+
 }

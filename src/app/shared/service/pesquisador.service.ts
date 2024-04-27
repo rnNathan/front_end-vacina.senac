@@ -21,4 +21,21 @@ export class PesquisadorService {
     return this.httpCliente.get<Array<Pessoa>>(this.API + '/pesquisadores')
   };
 
+  public consultarPessoaPorId(id: number):Observable<Pessoa> {
+    return this.httpCliente.get<Pessoa>(this.API + '/' + id);
+  }
+
+  public inserir(pessoa: Pessoa):Observable<any> {
+    return this.httpCliente.post<Pessoa>(this.API + '/inserir', pessoa)
+  }
+
+  public atualizar(pessoa: Pessoa):Observable<any> {
+    return this.httpCliente.put(this.API + '/atualizar', pessoa);
+
+  }
+
+  public excluir(id: number):Observable<boolean> {
+    return this.httpCliente.delete<boolean>(this.API + '/excluir/' + id)
+  }
+
 }
