@@ -1,0 +1,33 @@
+<div>
+    <table class="table table-striped border">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Sexo</th>
+          <th>CPF</th>
+          <th>tipo de Cadastrada</th>
+          <th>Data Nascimento</th>
+          <th>País origem:</th>
+          <!-- <th >Média</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pessoas">
+          <td>{{ p.nome }}</td>
+          <td>{{ p.sexo }}</td>
+          <td>{{ p.cpf }}</td>
+          <td>{{ p.tipoPessoaCadastrada }}</td>
+          <td>{{ p.dataNascimento | date : "dd/MM/yyyy" }}</td>
+          <td>{{ p.paisOrigem.nomePais }} </td>
+          <!-- <td> {{ vacina.mediaVacina }} </td> -->
+          <td>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary">Editar</button>
+              <button class="btn btn-danger ">Excluir</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+

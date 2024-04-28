@@ -15,15 +15,15 @@ export class PesquisadorService {
 
   public consultarTodasPessoas():Observable<Array<Pessoa>> {
     return this.httpCliente.get<Array<Pessoa>>(this.API + '/listar')
-  };
+  }
 
   public consultarPorPesquisador():Observable<Array<Pessoa>> {
     return this.httpCliente.get<Array<Pessoa>>(this.API + '/pesquisadores')
-  };
+  }
 
   public consultarPessoaPorId(id: number):Observable<Pessoa> {
     return this.httpCliente.get<Pessoa>(this.API + '/' + id);
-  }
+  } 
 
   public inserir(pessoa: Pessoa):Observable<any> {
     return this.httpCliente.post<Pessoa>(this.API + '/inserir', pessoa)

@@ -37,25 +37,35 @@ export class VacinaListagemComponent implements OnInit {
     this.consultarTodasVacinas();
 
     //METODO PARA CONSULTAR TODOS OS PAISES, UTILIZANDO UM SCROOL PARA ROLAR E PROCURAR DIRETAMENTE DO BACK END OS PAISES CADASTRADOS.
-    this.paisService.consultarTodosPaises().subscribe(
-      (resultado) => {
-        this.paises = resultado;
-      },
-      (erro) => {
-        console.error('erro ao consultar todas paises', erro);
-      }
-    );
-
-    this.pesquisadorService.consultarTodasPessoas().subscribe(
-      (resultado) => {
-        this.pesquisadores = resultado;
-      },
-      (erro) => {
-        console.error('erro ao consultar todas pesquisadores', erro);
-      }
-    );
+    this.consultarTodosOsPaises();
+    
+    //METODO PARA CONSULTAR TODAS AS PESSOAS ASSIM QUE APARECE A TELA DE LISTAGEM.
+    this.consultarTodasAsPessoas();
+   
   }
 
+  private consultarTodasAsPessoas() {
+  this.pesquisadorService.consultarTodasPessoas().subscribe(
+    (resultado) => {
+      this.pesquisadores = resultado;
+    },
+    (erro) => {
+      console.error('erro ao consultar todas pesquisadores', erro);
+    }
+  );
+}
+
+  private consultarTodosOsPaises() {
+  this.paisService.consultarTodosPaises().subscribe(
+    (resultado) => {
+      this.paises = resultado;
+    },
+    (erro) => {
+      console.error('erro ao consultar todas paises', erro);
+    }
+  );
+
+  }
   //METODO PARA CONSULTAR TODAS AS VACINAS.
   private consultarTodasVacinas() {
     this.VacinasService.listarTodas().subscribe(
