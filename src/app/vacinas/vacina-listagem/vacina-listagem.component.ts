@@ -38,10 +38,10 @@ export class VacinaListagemComponent implements OnInit {
 
     //METODO PARA CONSULTAR TODOS OS PAISES, UTILIZANDO UM SCROOL PARA ROLAR E PROCURAR DIRETAMENTE DO BACK END OS PAISES CADASTRADOS.
     this.consultarTodosOsPaises();
-    
+
     //METODO PARA CONSULTAR TODAS AS PESSOAS ASSIM QUE APARECE A TELA DE LISTAGEM.
     this.consultarTodasAsPessoas();
-   
+
   }
 
   private consultarTodasAsPessoas() {
@@ -111,7 +111,7 @@ export class VacinaListagemComponent implements OnInit {
             this.pesquisar();
           },
           (erro) => {
-            Swal.fire('Erro!', 'Erro ao excluir vacina: ' + erro.rerror.mensagem, 'error');
+            Swal.fire('Erro!', 'Erro ao excluir vacina: ' + erro.error.mensagem, 'error');
           }
 
         );
