@@ -23,7 +23,7 @@
               class="form-control"
               name="nomePais"
               [(ngModel)]="seletor.nomePais"
-            >  
+            >
               @for (pais of paises; track pais.idPais) {
               <option ngValue="{{ pais.nomePais }}">
                 {{ pais.nomePais }} ({{ pais.sigla }})</option>
@@ -64,7 +64,7 @@
                 name="btnPesquisar"
                 (click)="pesquisar()"
               >
-                Pesquisar  
+                Pesquisar
               </button>
               <label for="btnLimpar" class="form-label">&nbsp;</label>
               <button type="submit" class="btn btn-warning" (click)="limpar()">
@@ -81,21 +81,21 @@
     <table class="table table-striped border">
       <thead>
         <tr>
-          <th>Nome</th>
-          <th>Pais</th>
-          <th>Pesquisador</th>
-          <th>Estagio</th>
-          <th>Iniciou em:</th>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Pais</th>
+          <th class="text-center">Pesquisador</th>
+          <th class="text-center">Estagio</th>
+          <th class="text-center">Iniciou em:</th>
           <!-- <th >Média</th> -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let vacina of vacinas">
-          <td>{{ vacina.nome }}</td>
-          <td>{{ vacina.paisOrigem.nomePais }}</td>
-          <td>{{ vacina.pesquisador.nome }}</td>
-          <td>{{ vacina.estagio }}</td>
-          <td>{{ vacina.dataInicioPesquisa | date : "dd/MM/yyyy" }}</td>
+          <td class="text-center" >{{ vacina.nome }}</td>
+          <td class="text-center" >{{ vacina.paisOrigem.nomePais }}</td>
+          <td class="text-center" >{{ vacina.pesquisador.nome }}</td>
+          <td class="text-center" >{{ vacina.estagio }}</td>
+          <td class="text-center" >{{ vacina.dataInicioPesquisa | date : "dd/MM/yyyy" }}</td>
           <!-- <td> {{ vacina.mediaVacina }} </td> -->
           <td>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

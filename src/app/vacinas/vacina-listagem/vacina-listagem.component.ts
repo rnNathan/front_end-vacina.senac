@@ -40,12 +40,12 @@ export class VacinaListagemComponent implements OnInit {
     this.consultarTodosOsPaises();
 
     //METODO PARA CONSULTAR TODAS AS PESSOAS ASSIM QUE APARECE A TELA DE LISTAGEM.
-    this.consultarTodasAsPessoas();
+    this.consultarSomentePesquisador();
 
   }
 
-  private consultarTodasAsPessoas() {
-  this.pesquisadorService.consultarTodasPessoas().subscribe(
+  private consultarSomentePesquisador() {
+  this.pesquisadorService.consultarPorPesquisador().subscribe(
     (resultado) => {
       this.pesquisadores = resultado;
     },

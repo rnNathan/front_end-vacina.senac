@@ -1,4 +1,59 @@
-<div>
+<div class="container">
+  <div class="card">
+    <div class="card-header bg-primary">
+      <h5>Filtros</h5>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="text">Nome da pessoa:</label>
+            <input type="text" class="form-control text-center" required>
+          </div>
+          <div class="col-md-4">
+            <label for="text">CPF:</label>
+            <input type="text" class="form-control text-center" required>
+          </div>
+          <div class="col-md-4">
+            <label for="text">País de origem:</label>
+            <select
+            class="form-control text-center"
+            name="nomePais"
+
+          >
+            @for (pais of paises; track pais.idPais) {
+            <option ngValue="{{ pais.nomePais }}">
+              {{ pais.nomePais }} ({{ pais.sigla }})</option>
+            }
+          </select>
+          </div>
+          <div class="col-md-2">
+            <label for="date">Data nascimento:</label>
+            <input  type="date" class="form-control text-center" required >
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col-md-16 form-group">
+            <label for="btnPesquisar" class="form-label">&nbsp;</label>
+            <button
+
+              type="submit"
+              class="btn btn-success "
+              name="btnPesquisar"
+
+            >
+              Pesquisar
+            </button>
+            <label for="btnLimpar" class="form-label">&nbsp;</label>
+            <button type="submit" class="btn btn-warning">
+              Limpar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div>
     <table class="table table-striped border">
       <thead>
         <tr>
@@ -29,5 +84,5 @@
         </tr>
       </tbody>
     </table>
+  </div>
 </div>
-

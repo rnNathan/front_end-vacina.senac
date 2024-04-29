@@ -23,14 +23,14 @@ export class PesquisadorService {
 
   public consultarPessoaPorId(id: number):Observable<Pessoa> {
     return this.httpCliente.get<Pessoa>(this.API + '/' + id);
-  } 
+  }
 
-  public inserir(pessoa: Pessoa):Observable<any> {
+  public inserir(pessoa: Pessoa):Observable<Pessoa> {
     return this.httpCliente.post<Pessoa>(this.API + '/inserir', pessoa)
   }
 
-  public atualizar(pessoa: Pessoa):Observable<any> {
-    return this.httpCliente.put(this.API + '/atualizar', pessoa);
+  public atualizar(pessoa: Pessoa):Observable<boolean> {
+    return this.httpCliente.put<boolean>(this.API + '/atualizar', pessoa);
 
   }
 

@@ -64,7 +64,7 @@ export class VacinasDetalheComponent implements OnInit {
       }
     );
 
-  } 
+  }
 
 
   public salvar(): void {
@@ -118,7 +118,7 @@ export class VacinasDetalheComponent implements OnInit {
   }
 
   public voltar() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/vacinas'])
   }
 
 

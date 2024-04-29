@@ -12,24 +12,24 @@ export class AplicacaoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  inserir(vacinacao: Aplicacao):Observable<any> {
+  inserir(vacinacao: Aplicacao):Observable<Aplicacao> {
     return this.httpClient.post<Aplicacao>(this.API + '/inserir', vacinacao);
   }
 
-  atualizar(alterar: Aplicacao): Observable<any>{
+  atualizar(alterar: Aplicacao): Observable<Aplicacao>{
     return this.httpClient.post<Aplicacao>(this.API + '/alterar', alterar);
   }
 
   excluir (id: number):Observable<boolean> {
-    return this.httpClient.delete<boolean>(this.API + '/excluir' + id)
+    return this.httpClient.delete<boolean>(this.API + '/excluir' + id);
   }
 
   consultarPorId(id: number):Observable<Aplicacao>{
     return this.httpClient.get<Aplicacao>(this.API + '/' + id);
   }
 
-  consultarTodasAplicacoes(vacinacao: Aplicacao):Observable<Array<Aplicacao>>{
-    return this.httpClient.get<Array<Aplicacao>>(this.API + '/listarTodos')
+  consultarTodasAplicacoes():Observable<Array<Aplicacao>>{
+    return this.httpClient.get<Array<Aplicacao>>(this.API + '/listarTodos');
   }
 
 }

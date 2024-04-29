@@ -18,7 +18,7 @@ export class PaisService {
     return this.httpClient.get<Array<Pais>>(this.API + "/todos")
   }
 
-  public inserir(pais: Pais):Observable<any>{
+  public inserir(pais: Pais):Observable<Pais>{
     return this.httpClient.post<Pais>(this.API + '/inserir', pais);
   }
 
