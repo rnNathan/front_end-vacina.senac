@@ -13,7 +13,10 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="nomePesquisador">Nome do pesquisador:</label>
-                        <select class="form-control" name="nomePesquisador" [(ngModel)]="vacina.pesquisador" required>
+                        <select class="form-control" name="nomePesquisador" 
+                        [ngModelOptions]="{standalone: true}"
+                        [compareWith]="compareById"
+                        [(ngModel)]="vacina.pesquisador" required>
                             @for (pessoa of pesquisadores; track pessoa.id) {
                             <option [ngValue]="pessoa">{{ pessoa.nome }}</option>
                             }
