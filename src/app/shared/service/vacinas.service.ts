@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Vacinas } from '../model/vacina';
+import { Vacina } from '../model/vacina';
 import { VacinaSeletor } from '../model/seletor/vacina.seleto';
 
 
@@ -16,28 +16,28 @@ export class VacinasService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public listarTodas(): Observable <Array<Vacinas>> {
-    return this.httpClient.get<Array<Vacinas>>(this.API + "/listarTodos");
+  public listarTodas(): Observable <Array<Vacina>> {
+    return this.httpClient.get<Array<Vacina>>(this.API + "/listarTodos");
 
   }
-  public consultarPorId(id: number): Observable <Vacinas> {
-    return this.httpClient.get<Vacinas>(this.API + '/' + id);
+  public consultarPorId(id: number): Observable <Vacina> {
+    return this.httpClient.get<Vacina>(this.API + '/' + id);
 
   }
-  public consultarComSeletor(seletor: VacinaSeletor): Observable <Array<Vacinas>> {
-    return this.httpClient.post<Array<Vacinas>>(this.API + "/filtro", seletor)
+  public consultarComSeletor(seletor: VacinaSeletor): Observable <Array<Vacina>> {
+    return this.httpClient.post<Array<Vacina>>(this.API + "/filtro", seletor)
   }
 
 
-  public salvar(vacina: Vacinas): Observable<Vacinas> {
-    return this.httpClient.post<Vacinas>(this.API + '/inserir', vacina)
+  public salvar(vacina: Vacina): Observable<Vacina> {
+    return this.httpClient.post<Vacina>(this.API + '/inserir', vacina)
   }
 
   public excluir(id: number):Observable<boolean> {
     return this.httpClient.delete<boolean>(this.API + "/excluir/" + id);
   }
 
-  public atualizar(vacina: Vacinas):Observable<boolean> {
+  public atualizar(vacina: Vacina):Observable<boolean> {
     return this.httpClient.put<boolean>(this.API + '/alterar', vacina)
   }
 

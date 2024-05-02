@@ -19,7 +19,6 @@
             <select
             class="form-control text-center"
             name="nomePais"
-
           >
             @for (pais of paises; track pais.idPais) {
             <option ngValue="{{ pais.nomePais }}">
@@ -36,16 +35,15 @@
           <div class="col-md-16 form-group">
             <label for="btnPesquisar" class="form-label">&nbsp;</label>
             <button
-
               type="submit"
               class="btn btn-success "
               name="btnPesquisar"
-
+              (click)="pesquisar()"
             >
               Pesquisar
             </button>
             <label for="btnLimpar" class="form-label">&nbsp;</label>
-            <button type="submit" class="btn btn-warning">
+            <button type="submit" class="btn btn-warning" (click)="limpar()">
               Limpar
             </button>
           </div>
