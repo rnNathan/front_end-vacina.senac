@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VacinasService } from '../../shared/service/vacinas.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Vacinas } from '../../shared/model/vacina';
+import { Vacina } from '../../shared/model/vacina';
 import { Pessoa } from '../../shared/model/pessoa';
 import { Pais } from '../../shared/model/pais';
 import { PesquisadorService } from '../../shared/service/pesquisador.service';
@@ -24,7 +24,7 @@ export class VacinasDetalheComponent implements OnInit {
 
   public pais: Array<Pais> = new Array();
   public pesquisadores: Array<Pessoa> = new Array();
-  public vacina: Vacinas = new Vacinas();
+  public vacina: Vacina = new Vacina();
   public idVacina: number;
 
   constructor(

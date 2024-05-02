@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Vacinas } from '../../shared/model/vacina';
+import { Vacina } from '../../shared/model/vacina';
 import { VacinasService } from '../../shared/service/vacinas.service';
 import { VacinaSeletor } from '../../shared/model/seletor/vacina.seleto';
 import { PaisService } from '../../shared/service/pais.service';
@@ -18,14 +18,14 @@ import { Router } from '@angular/router';
 export class VacinaListagemComponent implements OnInit {
 
   //MEUS OBJETOS
-  public vacinas: Array<Vacinas> = new Array();
+  public vacinas: Array<Vacina> = new Array();
   public seletor: VacinaSeletor = new VacinaSeletor();
   public paises: Array<Pais> = new Array();
   public pesquisadores: Array<Pessoa> = new Array();
 
   //DECLARAR NO CONSTRUTOR TODAS AS CLASSES QUE VOCÊ QUER UTILIZAR, PODENDO VISUALIZAR METODOS FEITOS DENTRO DESSAS CLASSES.
   constructor(
-    private VacinasService: VacinasService,
+    private vacinasService: VacinasService,
     private paisService: PaisService,
     private pesquisadorService: PesquisadorService,
     private router: Router
@@ -68,7 +68,7 @@ export class VacinaListagemComponent implements OnInit {
   }
   //METODO PARA CONSULTAR TODAS AS VACINAS.
   private consultarTodasVacinas() {
-    this.VacinasService.listarTodas().subscribe(
+    this.vacinasService.listarTodas().subscribe(
       (resultado) => {
         this.vacinas = resultado;
       },
@@ -80,7 +80,7 @@ export class VacinaListagemComponent implements OnInit {
 
   //USADO NO BOTÃO PARA PESQUISAR, ELE UTILIZA A CONSULTA FEITA PELO SELETOR, TENDO TODOS OS FILTROS NO METODO DO BACK-AND.
   public pesquisar() {
-    this.VacinasService.consultarComSeletor(this.seletor).subscribe(
+    this.vacinasService.consultarComSeletor(this.seletor).subscribe(
       (resultado) => {
         this.vacinas = resultado;
       },
@@ -96,7 +96,7 @@ export class VacinaListagemComponent implements OnInit {
   }
 
   //METODO PARA EXCLUIR, UTILIZA UMA MENSAGEM CASO QUEIRA EXCLUIR OU NÃO (UTILIZANDO BIBLIOTECA SWEETALERT2)
-  public excluir(vacinaSelecionada: Vacinas) {
+  public excluir(vacinaSelecionada: Vacina) {
     Swal.fire({
       title: 'Deseja excluir vacina?',
       text: 'Essa ação não poderá ser desfeita',
@@ -106,7 +106,7 @@ export class VacinaListagemComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-        this.VacinasService.excluir(vacinaSelecionada.id).subscribe(
+        this.vacinasService.excluir(vacinaSelecionada.id).subscribe(
           (resultado) => {
             this.pesquisar();
             Swal.fire('Sucesso!','Excluido com sucesso.', 'success');
