@@ -109,6 +109,8 @@ export class VacinaListagemComponent implements OnInit {
         this.VacinasService.excluir(vacinaSelecionada.id).subscribe(
           (resultado) => {
             this.pesquisar();
+            Swal.fire('Sucesso!','Excluido com sucesso.', 'success');
+
           },
           (erro) => {
             Swal.fire('Erro!', 'Erro ao excluir vacina: ' + erro.error.mensagem, 'error');

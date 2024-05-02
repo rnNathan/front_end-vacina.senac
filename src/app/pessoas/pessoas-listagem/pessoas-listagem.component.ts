@@ -13,6 +13,7 @@ import { Pais } from '../../shared/model/pais';
 })
 export class PessoasListagemComponent implements OnInit{
 
+
   public pessoas: Array<Pessoa> = new Array();
   public paises: Array<Pais> = new Array();
 
@@ -21,7 +22,8 @@ export class PessoasListagemComponent implements OnInit{
     private paisService: PaisService){}
 
   ngOnInit(): void {
-    this.consultarTodosPaises()
+    this.consultarTodosPaises();
+    this.consultarTodasAsPessoas();
 
   }
 
@@ -49,7 +51,12 @@ export class PessoasListagemComponent implements OnInit{
     )};
 
     pesquisar(){
-      
+    
+
     }
+
+    limpar() {
+      throw new Error('Method not implemented.');
+      }
 
 }
