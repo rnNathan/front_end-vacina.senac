@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Aplicacao } from '../model/aplicacao';
 import { Observable } from 'rxjs';
+import { Aplicacao } from '../model/aplicacao';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,10 @@ export class AplicacaoService {
 
   consultarTodasAplicacoes():Observable<Array<Aplicacao>>{
     return this.httpClient.get<Array<Aplicacao>>(this.API + '/listarTodos');
+  }
+
+  consultarTodasVacinasPorId(id: number):Observable<Array<Aplicacao>>{
+    return this.httpClient.get<Array<Aplicacao>>(this.API + '/vacinas/' + id );
   }
 
 }

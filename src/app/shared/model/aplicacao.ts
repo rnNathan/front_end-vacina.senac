@@ -1,11 +1,12 @@
-import { Vacinas } from "./vacina";
+import { Vacina } from "./vacina";
+
 
 export class Aplicacao {
 
-    idVacinacao: number;
+  idVacinacao: number;
 	IdPessoa: number;
-    vacina: Vacinas;
-	dataVacina: Date
+  vacina: Vacina;
+	dataVacina: Date;
 	avaliacao: number;
-	
+
 }

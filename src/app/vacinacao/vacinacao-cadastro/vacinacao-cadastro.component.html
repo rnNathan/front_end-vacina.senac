@@ -1,0 +1,52 @@
+<div class="container">
+  <pre> {{vacinacao | json}} </pre>
+    <form>
+        <div class="card">
+            <div class="card-header">
+              <h5> {{ idVacinacao ? 'Editar' : 'Nova'}} vacinações</h5>
+            </div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label for="nomeVacina">Nome da Vacina:</label>
+                        <select class="form-control" name="nomeVacina"  [(ngModel)]="vacinacao.vacina" required>
+                          @for (vacina of vacinasDisponiveis; track vacina.vacina.id) {
+                          <option [ngValue]="vacina">{{ vacina.vacina.id }}</option>
+                          }
+                      </select>
+
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="nomePesquisador">Nome do pesquisador:</label>
+                        <select class="form-control" name="nomePesquisador" [(ngModel)]="vacinacao.IdPessoa" required>
+                            @for (pessoa of pesquisadores; track pessoa.id) {
+                            <option [ngValue]="pessoa">{{ pessoa.nome }}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label for="nomeVacina">Data aplicação:</label>
+                        <input type="date" class="form-control" name="nome"  required>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="nomeVacina">Nota:</label>
+                        <input type="number" class="form-control" name="nome"  required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-1 ">
+                        <label>&nbsp;</label>
+                        <button type="button" class="btn btn-outline-success" (click)="salvar()">Salvar</button>
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label>&nbsp;</label>
+                        <button type="button" class="btn btn-outline-warning" (click)="voltar()">Voltar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
