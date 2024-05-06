@@ -6,6 +6,7 @@ import { Aplicacao } from '../../shared/model/aplicacao';
 import { Vacina } from '../../shared/model/vacina';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { VacinasService } from '../../shared/service/vacinas.service';
 
 
 @Component({
@@ -18,18 +19,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class VacinacaoCadastroComponent implements OnInit{
 
   public pesquisadores: Array<Pessoa> = new Array();
-  public vacinasDisponiveis: Array<Aplicacao> = new Array();
+  public vacinas: Array<Vacina> = new Array();
   public vacinacao: Aplicacao = new Aplicacao();
-  public vacina: Vacina = new Vacina();
   public idVacinacao: number;
 
 
-  constructor(private pesquisadorService: PesquisadorService, private aplicacaoService: AplicacaoService, private router: Router, private route: ActivatedRoute){}
+  constructor(private pesquisadorService: PesquisadorService, private aplicacaoService: AplicacaoService,
+    private vacinaService: VacinasService,
+    private router: Router,
+    private route: ActivatedRoute,
+
+    ){}
 
   ngOnInit(): void {
     this.consultarTodosPesquisadores();
-
-    this.consultarTodasVacinasPorId();
+    this.consultarTodasVacinas();
 
     this.route.params.subscribe((params) => {
       this.idVacinacao = params['idVacinacao'];
@@ -55,13 +59,13 @@ export class VacinacaoCadastroComponent implements OnInit{
 
   }
 
-  consultarTodasVacinasPorId() {
-    this.aplicacaoService.consultarTodasVacinasPorId(this.vacina.id).subscribe(
+  consultarTodasVacinas() {
+    this.vacinaService.listarTodas().subscribe(
       resultado => {
-        this.vacinasDisponiveis = resultado;
+        this.vacinas = resultado;
       },
       erro => {
-        console.error('Erro ao consultar todas vacinas por id.', erro);
+        console.error('Erro ao consultar todas vacinas', erro);
       }
     )
   }
@@ -86,7 +90,7 @@ export class VacinacaoCadastroComponent implements OnInit{
         Swal.fire('Sucesso!', 'Aplicação cadastrada', 'success')
       },
       erro => {
-        Swal.fire('Erro ao salvar aplicação!', erro, 'error' );
+        Swal.fire('Erro ao salvar aplicação!', erro.error.mensagem, 'error' );
 
       }
 
@@ -107,7 +111,7 @@ export class VacinacaoCadastroComponent implements OnInit{
   }
 
   voltar() {
-    this.router.navigate(['/vacinas'])
+    this.router.navigate(['/vacinacao'])
   }
 
   buscarAplicacoes() {

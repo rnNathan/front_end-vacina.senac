@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class VacinaListagemComponent implements OnInit {
 
+
   //MEUS OBJETOS
   public vacinas: Array<Vacina> = new Array();
   public seletor: VacinaSeletor = new VacinaSeletor();
@@ -125,6 +126,13 @@ export class VacinaListagemComponent implements OnInit {
   public editar(idVacinaSelecionada: number) {
     this.router.navigate(['/vacinas/detalhes/', idVacinaSelecionada]);
   }
+
+  posterior() {
+
+    }
+  anterior() {
+    
+    }
 
 
 }
