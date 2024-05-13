@@ -17,7 +17,7 @@ export class VacinasService {
   constructor(private httpClient: HttpClient) { }
 
   public listarTodas(): Observable <Array<Vacina>> {
-    return this.httpClient.get<Array<Vacina>>(this.API + "/listarTodos");
+    return this.httpClient.get<Array<Vacina>>(this.API + '/listarTodos');
 
   }
   public consultarPorId(id: number): Observable <Vacina> {
@@ -25,20 +25,28 @@ export class VacinasService {
 
   }
   public consultarComSeletor(seletor: VacinaSeletor): Observable <Array<Vacina>> {
-    return this.httpClient.post<Array<Vacina>>(this.API + "/filtro", seletor)
+    return this.httpClient.post<Array<Vacina>>(this.API + '/filtro', seletor);
   }
 
 
-  public salvar(vacina: Vacina): Observable<Vacina> {
-    return this.httpClient.post<Vacina>(this.API + '/inserir', vacina)
+  public inserir(vacina: Vacina): Observable<Vacina> {
+    return this.httpClient.post<Vacina>(this.API + '/inserir', vacina);
   }
 
   public excluir(id: number):Observable<boolean> {
-    return this.httpClient.delete<boolean>(this.API + "/excluir/" + id);
+    return this.httpClient.delete<boolean>(this.API + '/excluir/' + id);
   }
 
   public atualizar(vacina: Vacina):Observable<boolean> {
-    return this.httpClient.put<boolean>(this.API + '/alterar', vacina)
+    return this.httpClient.put<boolean>(this.API + '/alterar', vacina);
+  }
+
+  public contarTotalRegistro(seletor:VacinaSeletor):Observable<number>{
+    return this.httpClient.post<number>(this.API + '/contar',seletor);
+  }
+
+  public contarPaginas(seletor: VacinaSeletor):Observable<number> {
+    return this.httpClient.post<number>(this.API + '/contar-pagina', seletor);
   }
 
 

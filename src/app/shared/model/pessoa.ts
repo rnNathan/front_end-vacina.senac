@@ -1,12 +1,12 @@
 import { Pais } from "./pais";
 
-export interface Pessoa {
-  id: number,
-  nome: string,
-  dataNascimento: Date,
-  sexo: string,
-  cpf: string,
-  tipoPessoaCadastrada: number,
-  paisOrigem: Pais
+export class Pessoa {
+  id: number;
+  nome: string;
+  cpf: string;
+  sexo: string;
+  dataNascimento: Date;
+  tipoPessoaCadastrada: number;
+  paisOrigem: Pais;
 
 }

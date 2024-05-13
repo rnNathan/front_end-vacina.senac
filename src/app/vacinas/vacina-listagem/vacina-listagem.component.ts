@@ -5,9 +5,10 @@ import { VacinaSeletor } from '../../shared/model/seletor/vacina.seleto';
 import { PaisService } from '../../shared/service/pais.service';
 import { Pais } from '../../shared/model/pais';
 import { Pessoa } from '../../shared/model/pessoa';
-import { PesquisadorService } from '../../shared/service/pesquisador.service';
+
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { PesquisadorService } from '../../shared/service/pessoa.service';
 
 @Component({
   selector: 'app-vacina-listagem',
@@ -23,6 +24,8 @@ export class VacinaListagemComponent implements OnInit {
   public seletor: VacinaSeletor = new VacinaSeletor();
   public paises: Array<Pais> = new Array();
   public pesquisadores: Array<Pessoa> = new Array();
+  public totalPaginas: Number = 0;
+  public readonly TAMANHO_PAGINA: number = 3;
 
   //DECLARAR NO CONSTRUTOR TODAS AS CLASSES QUE VOCÊ QUER UTILIZAR, PODENDO VISUALIZAR METODOS FEITOS DENTRO DESSAS CLASSES.
   constructor(
@@ -35,13 +38,18 @@ export class VacinaListagemComponent implements OnInit {
   //ngOnInit É TODOS OS METODOS QUE VAI APARECER ASSIM QUE ABRIR A PÁGINA.
   ngOnInit(): void {
     //UTILIZANDO O METODO ASSIM QUE MOSTRO A TELA E LISTA TODAS AS VACINAS.
-    this.consultarTodasVacinas();
+    //this.consultarTodasVacinas();
 
     //METODO PARA CONSULTAR TODOS OS PAISES, UTILIZANDO UM SCROOL PARA ROLAR E PROCURAR DIRETAMENTE DO BACK END OS PAISES CADASTRADOS.
     this.consultarTodosOsPaises();
 
     //METODO PARA CONSULTAR TODAS AS PESSOAS ASSIM QUE APARECE A TELA DE LISTAGEM.
     this.consultarSomentePesquisador();
+
+    this.seletor.limite = this.TAMANHO_PAGINA;
+    this.seletor.pagina = 1;
+    this.pesquisar();
+    this.contarPaginas();
 
   }
 
@@ -94,7 +102,11 @@ export class VacinaListagemComponent implements OnInit {
   //BOTÃO PARA LIMPAR OS INPUTS
   public limpar() {
     this.seletor = new VacinaSeletor();
+    this.seletor.limite = this.TAMANHO_PAGINA;
+    this.seletor.pagina = 1;
+  
   }
+
 
   //METODO PARA EXCLUIR, UTILIZA UMA MENSAGEM CASO QUEIRA EXCLUIR OU NÃO (UTILIZANDO BIBLIOTECA SWEETALERT2)
   public excluir(vacinaSelecionada: Vacina) {
@@ -127,12 +139,40 @@ export class VacinaListagemComponent implements OnInit {
     this.router.navigate(['/vacinas/detalhes/', idVacinaSelecionada]);
   }
 
-  posterior() {
+  public contarPaginas(){
+    this.vacinasService.contarPaginas(this.seletor).subscribe(
+      resultado => {
+        this.totalPaginas = resultado
+      },
+      erro => {
+        Swal.fire('Erro ao consultar total de páginas', erro.error.mensagem, 'error');
+      }
+    )
+  }
 
-    }
-  anterior() {
-    
-    }
+  atualizarPaginacao() {
+    this.contarPaginas();
+    this.pesquisar();
+  }
+
+  avancarPagina(){
+    this.seletor.pagina++;
+    this.pesquisar();
+  }
+
+  voltarPagina() {
+    this.seletor.pagina--;
+    this.pesquisar();
+  }
+
+  irParaPagina(indicePagina: number) {
+    this.seletor.pagina = indicePagina;
+    this.pesquisar();
+  }
+
+  criarArrayPaginas(): any[] {
+    return Array(this.totalPaginas).fill(0).map((x, i)=> i +1);
+  }
 
 
 }

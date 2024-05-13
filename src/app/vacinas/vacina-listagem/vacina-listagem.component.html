@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card">
+  <div class="card custom-border">
     <div class="card-header bg-primary">
       <h5>Filtros</h5>
     </div>
@@ -8,66 +8,54 @@
         <div class="row">
           <div class="col-md-4">
             <label for="nome">Nome Vacina:</label>
-            <input
-              type="text"
-              id="nome"
-              class="form-control"
-              name="nomeVacina"
-              [(ngModel)]="seletor.nomeVacina"
-            />
+            <input type="text" id="nome" class="form-control custom-border" name="nomeVacina"
+              [(ngModel)]="seletor.nomeVacina" />
           </div>
           <div class="col-md-4">
             <label for="nome">Nome País:</label>
             <!--<input type="text" id="nome" class="form-control" name="nomePais" [(ngModel)]="seletor.nomePais"> -->
-            <select
-              class="form-control"
-              name="nomePais"
-              [(ngModel)]="seletor.nomePais"
-            >
+            <select class="form-control custom-border" name="nomePais" [(ngModel)]="seletor.nomePais">
               @for (pais of paises; track pais.idPais) {
               <option ngValue="{{ pais.nomePais }}">
                 {{ pais.nomePais }} ({{ pais.sigla }})</option>
               }
             </select>
           </div>
-            <!--  -->
+          <!--  -->
           <div class="col-md-4">
             <label for="nome">Nome Pesquisador:</label>
             <!-- <input type="text" id="nome" class="form-control" name="nomePesquisador"  [(ngModel)]="seletor.nomePesquisador">-->
-            <select
-              class="form-control"
-              name="nomePesquisador"
-              [(ngModel)]="seletor.nomePesquisador"
-            >
+            <select class="form-control custom-border" name="nomePesquisador" [(ngModel)]="seletor.nomePesquisador">
               <!--CRIAR UM @FOR PARA BUSCAR TODOS OS PESQUISADORES PELO NOME, PEGA DO ARRAY FEITO NO VACINA-LISTAGEN.COMPONENT.TS   -->
               @for (pessoa of pesquisadores; track pessoa.id) {
               <option value="{{ pessoa.nome }}">{{ pessoa.nome }}</option>
               }
             </select>
           </div>
-          <div class="col-md-2" >
+          <div class="col-md-2">
             <label for="date">Inicio da vacina. Em:</label>
-            <input type="date" id="inicio" class="form-control" name="dataPesquisa"  [(ngModel)]="seletor.dataInicioPesquisa">
+            <input type="date" id="inicio" class="form-control custom-border" name="dataPesquisa"
+              [(ngModel)]="seletor.dataInicioPesquisa">
 
           </div>
           <div class="col-md-2">
             <label for="date">Até: </label>
-            <input type="date" id="nome" class="form-control" name="dataPesquisa"  [(ngModel)]="seletor.dataFinalPesquisa">
+            <input type="date" id="nome" class="form-control custom-border" name="dataPesquisa"
+              [(ngModel)]="seletor.dataFinalPesquisa">
 
           </div>
-          <div class="row" >
+          <div class="row">
             <div class="col-md-16 form-group">
               <label for="btnPesquisar" class="form-label">&nbsp;</label>
-              <button
-                type="submit"
-                class="btn btn-success"
-                name="btnPesquisar"
-                (click)="pesquisar()"
-              >
+              <button type="button" class="btn btn-outline-secondary"
+                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                name="btnPesquisar" (click)="pesquisar()">
                 Pesquisar
               </button>
               <label for="btnLimpar" class="form-label">&nbsp;</label>
-              <button type="submit" class="btn btn-warning" (click)="limpar()">
+              <button type="button" class="btn btn-outline-primary"
+                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                (click)="limpar()">
                 Limpar
               </button>
             </div>
@@ -76,6 +64,35 @@
       </form>
     </div>
   </div>
+  <br><br>
+
+
+  <nav class="row">
+    <div class="col-md-3">
+      <!-- Componente de quantidade de registros por página -->
+      <label for="quantidadeRegistros">Quantidade de registros por página:</label>
+      <select class="form-select" [(ngModel)]="seletor.limite" (change)="atualizarPaginacao()">
+        <option value="3">3</option>
+        <option value="6">6</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="quantidadeRegistros">&nbsp;</label>
+      <!-- Componente de paginação -->
+      <ul class="pagination">
+        <li class="page-item"><button [disabled]="seletor.pagina == 1" class="page-link"
+            (click)="voltarPagina()">Anterior</button></li>
+
+        <!-- Botões com as páginas construídos dinamicamente -->
+        <li class="page-item" *ngFor="let indice of criarArrayPaginas()" (click)="irParaPagina(indice)"><button
+            class="page-link">{{indice}}</button></li>
+
+        <li class="page-item"><button [disabled]="seletor.pagina == totalPaginas" class="page-link"
+            (click)="avancarPagina()">Próxima</button></li>
+      </ul>
+    </div>
+  </nav>
 
   <div>
     <table class="table table-striped border">
@@ -91,29 +108,20 @@
       </thead>
       <tbody>
         <tr *ngFor="let vacina of vacinas">
-          <td class="text-center" >{{ vacina.nome }}</td>
-          <td class="text-center" >{{ vacina.paisOrigem.nomePais }}</td>
-          <td class="text-center" >{{ vacina.pesquisador.nome }}</td>
-          <td class="text-center" >{{ vacina.estagio }}</td>
-          <td class="text-center" >{{ vacina.dataInicioPesquisa | date : "dd/MM/yyyy" }}</td>
+          <td class="text-center">{{ vacina.nome }}</td>
+          <td class="text-center">{{ vacina.paisOrigem.nomePais }}</td>
+          <td class="text-center">{{ vacina.pesquisador.nome }}</td>
+          <td class="text-center">{{ vacina.estagio }}</td>
+          <td class="text-center">{{ vacina.dataInicioPesquisa | date : "dd/MM/yyyy" }}</td>
           <!-- <td> {{ vacina.mediaVacina }} </td> -->
           <td>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="btn btn-primary" (click)="editar(vacina.id)">Editar</button>
-              <button class="btn btn-danger " (click)="excluir(vacina)">Excluir</button>
+              <button class="btn btn-outline-success" (click)="editar(vacina.id)">Editar</button>
+              <button class="btn btn-outline-danger" (click)="excluir(vacina)">Excluir</button>
             </div>
           </td>
         </tr>
       </tbody>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#" (click)="anterior()">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#" (click)="posterior()">Next</a></li>
-        </ul>
-      </nav>
     </table>
   </div>
 </div>

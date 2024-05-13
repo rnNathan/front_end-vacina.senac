@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PesquisadorService } from '../../shared/service/pesquisador.service';
+import { PesquisadorService } from '../../shared/service/pessoa.service';
 import { Pessoa } from '../../shared/model/pessoa';
 import { AplicacaoService } from '../../shared/service/aplicacao.service';
 import { Aplicacao } from '../../shared/model/aplicacao';

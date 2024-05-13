@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Vacina } from '../../shared/model/vacina';
 import { Pessoa } from '../../shared/model/pessoa';
 import { Pais } from '../../shared/model/pais';
-import { PesquisadorService } from '../../shared/service/pesquisador.service';
+import { PesquisadorService } from '../../shared/service/pessoa.service';
 import { PaisService } from '../../shared/service/pais.service';
 import Swal from 'sweetalert2';
 
@@ -77,7 +77,7 @@ export class VacinasDetalheComponent implements OnInit {
   }
 
   public inserir(): void {
-    this.vacinasService.salvar(this.vacina).subscribe(
+    this.vacinasService.inserir(this.vacina).subscribe(
       (resposta) => {
         this.vacina = resposta;
         Swal.fire('Vacina salva com sucesso!', '', 'success');
