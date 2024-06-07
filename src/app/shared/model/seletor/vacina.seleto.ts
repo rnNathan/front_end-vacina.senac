@@ -1,4 +1,4 @@
-import { BaseSeletor } from "./BaseSeletor";
+import { BaseSeletor } from "./baseSeletor";
 
 export class VacinaSeletor extends BaseSeletor{
     nomePais: string;
